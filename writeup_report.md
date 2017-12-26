@@ -19,13 +19,14 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./images/CNN_Diagram.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
-
+[image2]: ./images/image_center.png "Center image"
+[image3]: ./images/img_flipped.png "Flipped Image"
+[image4]: ./images/image_cropped.png "Cropped  Image"
+[image5]: ./images/image_center2.png "Original Image"
+[image6]: ./images/img_shift_0.png "Shift Image"
+[image7]: ./images/img_shift_1.png "Shift Image"
+[image8]: ./images/img_shift_2.png "Shift Image"
+[image9]: ./images/img_shift_3.png "Shift Image"
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
 
@@ -70,7 +71,7 @@ The model used an adam optimizer, so the learning rate was not tuned manually (m
 
 #### 4. Appropriate training data
 
-Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, and including the left and right cameras. Also Augmentation was including by mean of shifting the central image and increasing the steering rate.
+Training data was chosen to keep the vehicle driving on the road. I used a combination of the central camera, and including the left and right cameras. Also Augmentation was including by mean of shifting the central image and increasing the steering rate. 
 
 For details about how I created the training data, see the next section. 
 
@@ -79,6 +80,12 @@ For details about how I created the training data, see the next section.
 #### 1. Solution Design Approach
 
 My first step was to use a convolution neural network model similar to the Lenet5.  I thought this model might be appropriate because I tested with a simple Lenet5 and more or less it was working but not properly at all.
+
+###It is important to remark that the image is cropped in the Keras graph and normalized as the input of the CNN pipeline. A cropped example is illustrated below:
+
+![alt text][image2] 
+
+![alt text][image4]
 
 In order to know how well the model was working, I split my image and steering angle data into a training and validation set. I used this scheme as reference to avoid the overfitting problem.
 
@@ -96,7 +103,18 @@ The final model architecture (model.py lines 27-61) consisted of a convolution n
 
 #### 3. Creation of the Training Set & Training Process
 
-I was using the recordings provided by the course and no extra recordings were used.  To augment the data sat, I also shifted the images and angles but also applying the flipping and inverting the steering value.
+I was using the recordings provided by the course and no extra recordings were used.  To augment the data sat, I also shifted the images and steering but also applying the flipping and inverting the steering value as show below:
+
+![alt text][image2]
+![alt text][image3]
+
+The augmentation with the shift is shown below:
+
+![alt text][image5]
+![alt text][image6]
+![alt text][image7]
+![alt text][image8]
+![alt text][image9]
 
 It is important to remark that I used a generator in order to avoid memory problem. I was using an ad-hoc solution that instead of load the images, I was loading preprocessed pickles with a batch of images and steering. This solution it was quite fast in comparison with the one reading image by image. The difference was like 35 times more faster. The script that generate these pickle files is in "generate_data.py"
 
@@ -106,4 +124,4 @@ I used this training data for training the model. The validation set helped dete
 
 Results:
 
-loss: 0.0238 - val_loss: 0.0161
+loss: 0.0176 - val_loss: 0.0161

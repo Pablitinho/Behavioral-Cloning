@@ -106,6 +106,7 @@ def create_pickle(log_data,img_path):
                img_flipped = cv2.flip(image_center, 1)
                images.append(img_flipped)
                measurements.append(-steering_center)
+
             # -------------------------------------------------------
             # Shift to the left
             # -------------------------------------------------------
@@ -118,15 +119,8 @@ def create_pickle(log_data,img_path):
                 measurements.append(steering)
                 # cv2.imshow("shift",img_translation)
                 # cv2.waitKey(0)
-
                 #measurements.append(steering_center - 0.05 * iter)
-            # -------------------------------------------------------
-            # Shift to the right
-            # -------------------------------------------------------
-            # for iter in range(1, 4):
-            #     img_translation = augmentation_shift(image_center, iter*2)
-            #     images.append(img_translation)
-            #     measurements.append(steering_center + 0.05 * iter)
+
         else:
             print("Batch: ", cnt)
             images = np.array(images)

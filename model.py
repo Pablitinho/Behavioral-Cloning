@@ -44,7 +44,7 @@ def generator(sub_name, num_batches):
 # -----------------------------------------------------------------------
 import generate_data as gd
 # -----------------------------------------------------------------------
-#gd.create_pickle('./data/driving_log.csv', './data/IMG/')
+gd.create_pickle('./data/driving_log.csv', './data/IMG/')
 
 model = Sequential()
 # Convert to grayscale

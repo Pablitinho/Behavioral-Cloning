@@ -3,6 +3,7 @@
 [![Udacity - Self-Driving Car NanoDegree](https://s3.amazonaws.com/udacity-sdc/github/shield-carnd.svg)](http://www.udacity.com/drive)
 
 Overview
+PLEASE, READ THE WRITEUP.MD FOR MORE INFORMATION ABOUT THE MODEL DESIGN AND AUGMENTATION!!!!!!!!!!!!!
 ---
 This repository contains starting files for the Behavioral Cloning Project.
 
@@ -10,7 +11,7 @@ In this project, you will use what you've learned about deep neural networks and
 
 We have provided a simulator where you can steer a car around a track for data collection. You'll use image data and steering angles to train a neural network and then use this model to drive the car autonomously around the track.
 
-We also want you to create a detailed writeup of the project. Check out the [writeup template](https://github.com/udacity/CarND-Behavioral-Cloning-P3/blob/master/writeup_template.md) for this project and use it as a starting point for creating your own writeup. The writeup can be either a markdown file or a pdf document.
+We also want you to create a detailed writeup of the project. Check out the [writeup_report]([https://github.com/Pablitinho/Behavioral-Cloning/blob/master/writeup_report.md](https://github.com/Pablitinho/Behavioral-Cloning/blob/master/writeup_report.md)) for this project and use it as a starting point for creating your own writeup. The writeup can be either a markdown file or a pdf document.
 
 To meet specifications, the project will require submitting five files: 
 * model.py (script used to create and train the model)
