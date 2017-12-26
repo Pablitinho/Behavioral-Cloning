@@ -5,6 +5,31 @@ from keras.layers import Flatten, Dense, Lambda, Cropping2D, Activation, Dropout
 from keras.layers.convolutional import Conv2D
 from keras.models import Sequential
 from keras.regularizers import l2
+from keras.optimizers import Adam
+import matplotlib.pyplot as plt
+
+def plt_histogram(y_train):
+
+    #classes = [np.where(r == 1)[0][0] for r in y_train]
+    # plot the number of examples of training
+    unique, counts = np.unique(y_train, return_counts=True)
+    plt.bar(unique, counts, 1 / 133.5, color="green")
+    plt.title("Number of samples per class")
+    plt.xlabel("Class")
+    plt.ylabel("Number of samples")
+    plt.show()
+    return counts
+# -----------------------------------------------------------------------
+def histogram_steering(sub_name, num_batches):
+    Y_train_total = []
+    for pick_id in range(num_batches):
+        with open('./augmented_data/stearing_' + sub_name + str(pick_id) + '.pickle', 'rb') as handle:
+             Y_train = (pickle.load(handle))
+        #Y_train = np.expand_dims(Y_train, axis=1)
+        Y_train_total.append(Y_train)
+
+    #plt_histogram(np.expand_dims(np.array(Y_train_total), axis=1))
+    plt_histogram(Y_train_total)
 # -----------------------------------------------------------------------
 def generator(sub_name, num_batches):
     while 1: # Loop forever so the generator never terminates
@@ -24,8 +49,9 @@ import generate_data as gd
 model = Sequential()
 # Convert to grayscale
 #model.add(Lambda(lambda x:(0.21 * x[:,:,:,:1]) + (0.72 * x[:,:,:,1:2]) + (0.07 * x[:,:,:,-1:]),input_shape=(160,320,3)))
-model.add(Lambda(lambda x:x/255.0 - 0.5,input_shape=(160,320,3)))
-model.add(Cropping2D(cropping=((50,25),(0,0))))
+
+model.add(Cropping2D(cropping=((50,25),(0,0)),input_shape=(160,320,3)))
+model.add(Lambda(lambda x:x/255.0 - 0.5))
 
 # # # Add three 5x5 convolution layers (output depth 24, 36, and 48), each with 2x2 stride
 model.add(Conv2D(32, (5, 5),strides = (2, 2), border_mode='valid', W_regularizer=l2(0.00001)))
@@ -71,7 +97,7 @@ sub_name_validation = 'validation_'
 train_generator = generator(sub_name_train, num_sub_samples_train)
 validation_generator = generator(sub_name_validation, num_sub_samples_test)
 
-model.fit_generator(train_generator, samples_per_epoch=num_sub_samples_train, validation_data=validation_generator, nb_val_samples=num_sub_samples_test, nb_epoch=3)
+model.fit_generator(train_generator, samples_per_epoch=num_sub_samples_train, validation_data=validation_generator, nb_val_samples=num_sub_samples_test, nb_epoch=4)
 model.save('model.h5')
 exit()
 
