@@ -1,13 +1,10 @@
 import pickle
-
 import numpy as np
 import sklearn
 from keras.layers import Flatten, Dense, Lambda, Cropping2D, Activation, Dropout
 from keras.layers.convolutional import Conv2D
 from keras.models import Sequential
 from keras.regularizers import l2
-
-
 # -----------------------------------------------------------------------
 def generator(sub_name, num_batches):
     while 1: # Loop forever so the generator never terminates
