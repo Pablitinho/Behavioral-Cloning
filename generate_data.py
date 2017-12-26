@@ -117,8 +117,6 @@ def create_pickle(log_data,img_path):
                 img_translation, steering = trans_image(image_center, steering_center, trans_range_x, trans_range_y)
                 images.append(img_translation)
                 measurements.append(steering)
-                # cv2.imshow("shift",img_translation)
-                # cv2.waitKey(0)
                 #measurements.append(steering_center - 0.05 * iter)
 
         else:
