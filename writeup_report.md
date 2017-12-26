@@ -98,7 +98,7 @@ The final model architecture (model.py lines 27-61) consisted of a convolution n
 
 I was using the recordings provided by the course and no extra recordings were used.  To augment the data sat, I also shifted the images and angles but also applying the flipping, but the flipping was removed because I got bad results.
 
-It is important to remark that I used a generator in order to avoid memory problem. I was using an ad-hoc solution that instead of load the images, I was loading preprocessed pickles with a batch of images and steering. This solution it was quite fast in comparison with the one reading image by image. The difference was like 5 times more faster. 
+It is important to remark that I used a generator in order to avoid memory problem. I was using an ad-hoc solution that instead of load the images, I was loading preprocessed pickles with a batch of images and steering. This solution it was quite fast in comparison with the one reading image by image. The difference was like 35 times more faster. The script that generate these pickle files is in "generate_data.py"
 
 I finally randomly shuffled the data set and put 0.2% of the data into a validation set. 
 
